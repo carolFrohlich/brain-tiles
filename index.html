@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div id="main" class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 150 }'>
+    <div id="main" class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 10 }'>
 
     </div>
     <script src="plugins/jquery-3.1.1.min.js"></script>
@@ -31,8 +31,8 @@
 
 
     <script>
-        var sizes = [150,150,150,150,300];
-        var colors = ['#FFFBF3','#FF4242','#3DEC6D','#3B9CE3','#E8ED40', '#FF5733', '#C39BD3', '#DC7633'];
+        var sizes = [5,5,5,5,10,10,10,10,20,20];
+        var colors = ['#8d45d8','#e52843','#3fa9f5','#7ac943','#ff6022'];
         var min_count = 40;
         var max_count = 80;
         patterns_names = ['chevrons','plusSigns','chevrons','xes','sineWaves','overlappingRings','triangles','tessellation']
@@ -54,14 +54,16 @@
             //var color_index = getRandomInt(0, colors.length);        
             var pattern = patterns[getRandomInt(0, patterns.length-1)];
             var size = sizes[getRandomInt(0, sizes.length-1)];
-            var img =  $('<img>',{id:'b'+i,src:'assets/brain.png', width:size,class:"grid-item"})
+            var img =  $('<img>',{id:'b'+i,src:'assets/brain.png', width:size+'%',class:"grid-item"})
             $('#main').prepend(img)
             $('#b'+i).css('background-image', pattern.toDataUrl());
         };
 
         $( document ).ready(function() {
-            console.log('aaaaaaaa')
-            $(window).trigger('resize');
+            console.log('aaaaaaaa');
+            var w = $(window).width();
+            var h = $(window).height();
+
         });
     </script>
 
