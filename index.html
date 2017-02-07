@@ -31,38 +31,38 @@
 
 
     <script>
-        var sizes = [150,200,250,300];
-        var colors = ['#FFFBF3','#FF4242','#3DEC6D','#3B9CE3','#E8ED40'];
-        var min_count = 18;
-        var max_count = 40;
-        patterns = ['chevrons','plusSigns','chevrons','xes']
+        var sizes = [150,150,150,150,300];
+        var colors = ['#FFFBF3','#FF4242','#3DEC6D','#3B9CE3','#E8ED40', '#FF5733', '#C39BD3', '#DC7633'];
+        var min_count = 40;
+        var max_count = 80;
+        patterns_names = ['chevrons','plusSigns','chevrons','xes','sineWaves','overlappingRings','triangles','tessellation']
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
-        var pattern1 = GeoPattern.generate({string: '1', generator:'chevrons', color:colors[getRandomInt(0, colors.length)]});
-        var pattern2 = GeoPattern.generate({string: '2', generator:'plusSigns', color:colors[getRandomInt(0, colors.length)]});
-        var pattern3 = GeoPattern.generate({string: '3', generator:'xes', color:colors[getRandomInt(0, colors.length)]});
-        var pattern4 = GeoPattern.generate({string: '4', generator:'sineWaves', color:colors[getRandomInt(0, colors.length)]});
-        var pattern5 = GeoPattern.generate({string: '5', generator:'overlappingRings', color:colors[getRandomInt(0, colors.length)]});
-        var pattern6 = GeoPattern.generate({string: '6', generator:'triangles', color:colors[getRandomInt(0, colors.length)]});
-        var pattern7 = GeoPattern.generate({string: '7', generator:'tessellation', color:colors[getRandomInt(0, colors.length)]});
+        patterns = []
 
-        patterns = [pattern1, pattern2, pattern3,pattern4,pattern5,pattern6,pattern7]
+        for (var i = 0; i < colors.length; i++) {
+            for (var j = 0; j < patterns_names.length; j++) {
+                var p = GeoPattern.generate({string: (i*j).toString() , generator:patterns_names[j], color:colors[i]});
+                patterns.push(p);
+            };
+        };
 
         var count = getRandomInt(min_count, max_count)
         for (var i = 0; i < count; i++) {
             //var color_index = getRandomInt(0, colors.length);        
             var pattern = patterns[getRandomInt(0, patterns.length-1)];
-            var size = sizes[getRandomInt(0, sizes.length)];
+            var size = sizes[getRandomInt(0, sizes.length-1)];
             var img =  $('<img>',{id:'b'+i,src:'assets/brain.png', width:size,class:"grid-item"})
             $('#main').prepend(img)
             $('#b'+i).css('background-image', pattern.toDataUrl());
         };
 
-        
-        
-
+        $( document ).ready(function() {
+            console.log('aaaaaaaa')
+            $(window).trigger('resize');
+        });
     </script>
 
 </body>
