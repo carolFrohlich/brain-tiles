@@ -13,8 +13,8 @@
     <!-- Bootstrap Core CSS -->
     <!--  <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <!-- cpac CSS -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -59,10 +59,15 @@
             $('#b'+i).css('background-image', pattern.toDataUrl());
         };
 
-        $( document ).ready(function() {
+        $(window).on('load', function(){
             console.log('aaaaaaaa');
-            var w = $(window).width();
-            var h = $(window).height();
+            $('.grid').masonry({
+              // options
+              itemSelector: '.grid-item',
+              columnWidth: 10
+            });
+            //var w = $(window).width();
+            //var h = $(window).height();
 
         });
     </script>
